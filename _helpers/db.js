@@ -7,7 +7,7 @@ module.exports = db = {};
 initialize();
 
 async function initialize() {
-    // create db if it doens't already exist
+    // create db if it doesn't already exist
     const { host, port, user, password, database } = config.database;
     const connection = await mysql.createConnection({ host, port, user, password });
     await connection.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
@@ -22,7 +22,7 @@ async function initialize() {
     // define relationships
     db.Account.hasMany(db.RefreshToken, { onDelete: 'CASCADE' });
     db.RefreshToken.belongsTo(db.Account);
-
+    
     // sync all models with database
     await sequelize.sync();
 }

@@ -4,13 +4,13 @@ module.exports = model;
 
 function model(sequelize) {
     const attributes = {
-        email: { type: DataTypes.STRING, allowNull: false},
-        passwordHash: { type: DataTypes.STRING, allowNull: false},
-        title: { type: DataTypes.STRING, allowNull: false},
-        firstName: { type: DataTypes.STRING, allowNull: false},
-        lastName: { type: DataTypes.STRING, allowNull: false},
+        email: { type: DataTypes.STRING, allowNull: false },
+        passwordHash: { type: DataTypes.STRING, allowNull: false },
+        title: { type: DataTypes.STRING, allowNull: false },
+        firstName: { type: DataTypes.STRING, allowNull: false },
+        lastName: { type: DataTypes.STRING, allowNull: false },
         acceptTerms: { type: DataTypes.BOOLEAN },
-        role: { type: DataTypes.STRING, allowNull: false},
+        role: { type: DataTypes.STRING, allowNull: false },
         verificationToken: { type: DataTypes.STRING },
         verified: { type: DataTypes.DATE },
         resetToken: { type: DataTypes.STRING },
@@ -20,22 +20,22 @@ function model(sequelize) {
         updated: { type: DataTypes.DATE },
         isVerified: {
             type: DataTypes.VIRTUAL,
-            get() { return !!(this.verified || this.passwordReset ); }
+            get() { return !!(this.verified || this.passwordReset); }
         }
     };
 
     const options = {
-        // disable default timestamp field (createdAt and updatedAt)
-        timestamps: false,
+        // disable default timestamp fields (createdAt and updatedAt)
+        timestamps: false, 
         defaultScope: {
-            //excludes password hash by default
+            // exclude password hash by default
             attributes: { exclude: ['passwordHash'] }
         },
         scopes: {
-            //include hash with this scope
+            // include hash with this scope
             withHash: { attributes: {}, }
-        }
+        }        
     };
 
-    return sequelize.define('account', attritbutes, options);
+    return sequelize.define('account', attributes, options);
 }
