@@ -1,5 +1,5 @@
 {
-  "name": "boilerplate-api",
+  "name": "node-mysql-signup-verification-api",
   "version": "1.0.0",
     "description": "NodeJS + MySQL API for Email Sign Up with Verification, Authentication & Forgot Password",
     "license": "MIT",
